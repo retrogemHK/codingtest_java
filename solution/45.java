@@ -111,6 +111,7 @@ public class Solution {
         return false;
     }
 
+    // 이 부분을 변경해서 실행해보세요.
     private static int[][] solution(int[][] board) {
         Board = board;
         findSolution();
