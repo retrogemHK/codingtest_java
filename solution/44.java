@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Code454A {
+public class Solution {
 
     public static void main(String[] args) {
         System.out.println(solution(5));
