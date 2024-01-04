@@ -8,8 +8,8 @@ public class Solution {
         System.out.println(Arrays.toString(solution(new int[]{6, 1, 7})));
     }
 
+    // 이 부분을 변경해서 실행해보세요.
     private static int[] solution(int[] arr) {
-        // 이 부분을 변경해서 실행해보세요.
         Arrays.sort(arr);
         return arr;
     }
