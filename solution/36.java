@@ -19,6 +19,7 @@ public class Solution {
 
     private static ArrayList<Integer> answer;
 
+    // 이 부분을 변경해서 실행해보세요.
     private static int[] solution(int[][] graph, int start, int n) {
         adjList = new ArrayList[n + 1];
         for (int i = 0; i < adjList.length; i++) {

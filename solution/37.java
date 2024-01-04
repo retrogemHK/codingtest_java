@@ -21,6 +21,7 @@ public class Solution {
         }
     }
 
+    // 이 부분을 변경해서 실행해보세요.
     public static int[] solution(int[][] graph, int start, int n) {
         // ❶ 인접 리스트를 저장할 ArrayList 배열 초기화
         ArrayList<Node>[] adjList = new ArrayList[n];
