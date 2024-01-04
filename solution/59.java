@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Code548A {
+public class Solution {
 
     public static void main(String[] args) {
         int[][] arr1 = {
