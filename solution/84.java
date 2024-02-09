@@ -1,4 +1,4 @@
-class Code702_택배배달과수거하기 {
+class Solution {
 
     public static void main(String[] args) {
         System.out.println(solution(4, 1, new int[]{0}, new int[]{0}));
