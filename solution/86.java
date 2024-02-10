@@ -8,6 +8,7 @@ class Solution {
         System.out.println(Arrays.toString(solution(new String[]{"1011110","01110","101101111010"})));
         System.out.println(Arrays.toString(solution(new String[]{"1100111011101001"})));
     }
+
     public static String[] solution(String[] s) {
         String[] answer = new String[s.length];
 
