@@ -9,7 +9,7 @@
 
 
 
-![image](https://github.com/retrogemHK/codingtest_java/assets/java_image.jpg)
+![image](https://github.com/retrogemHK/codingtest_java/blob/main/assets/java_image.jpg)
 
 
 # 진행중인 이벤트
