@@ -1,15 +1,15 @@
 # 코딩 테스트 합격자 되기(자바 편)- 3월 초 출간 예정
-| 서점      | 구매링크                                                                                         |
-|---------|----------------------------------------------------------------------------------------------|
-| 무료 미리보기 | (TBD)                                                                                        |
-| 교보문고    | (TBD)                                                                                        |
-| 알라딘     | (TBD)                                                                                        |
-| 예스24    | (TBD)                                                                                        |
-| 정오표     |https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0|
+| 서점      | 구매링크                                                                                           |
+|---------|------------------------------------------------------------------------------------------------|
+| 무료 미리보기 | (TBD)                                                                                          |
+| 교보문고    | https://product.kyobobook.co.kr/detail/S000212576322                                           |
+| 알라딘     | https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=335109613                                   |
+| 예스24    | https://www.yes24.com/Product/Goods/125183948                                                  |
+| 정오표     | https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0 |
 
 
 
-![image](https://github.com/dremdeveloper/codingtest_python/assets/131899974/d7e70dc0-cd77-44b8-a68a-71475540b3b7)
+![image](https://github.com/dremdeveloper/codingtest_python/assets/java_image.jpg)
 
 
 # 진행중인 이벤트
@@ -23,8 +23,6 @@
 | Title    | Description                                    |
 | ---------- | ---------------------------------------------- |
 |카카오톡 오픈채팅        |[클릭](https://open.kakao.com/o/gQOVhU3f)              |
-
-![image](https://github.com/dremdeveloper/codingtest_python/assets/131899974/ba74f116-ddb6-4cb4-956e-147d35e10336)
 
 # 연락처
 - 해당 코드들에 대해 문의사항이 있거나, 연락이 필요한 경우 아래 참조
