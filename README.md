@@ -6,7 +6,7 @@
 | 알라딘          | https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=335109613                                   |
 | 예스24         | https://www.yes24.com/Product/Goods/125183948                                                  |
 
-정오표 : https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0
+[정오표](https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0)
 
 ![image](https://github.com/retrogemHK/codingtest_java/blob/main/assets/java_image.jpg)
 
