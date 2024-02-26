@@ -9,6 +9,7 @@
 # 정오표
 [클릭](https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0)
 
+# 책소개
 ![image](https://github.com/retrogemHK/codingtest_java/blob/main/assets/java_image.jpg)
 
 
