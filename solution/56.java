@@ -1,29 +1,29 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class Solution {
 
-    public String solution(int[] numbers) {
-        // ❶ int형 정수 배열을 문자열로 바꾸어 list에 저장합니다.
-        ArrayList<String> list = new ArrayList<>();
-        for (int number : numbers) {
-            list.add(String.valueOf(number));
+    public int[] solution(String s) {
+        // ❶ 문자열 s에서 대괄호를 제거하고 ","을 기준으로 나누어 배열에 저장한 후 길이 기준으로 오름차순 정렬합니다.
+        s = s.substring(0, s.length() - 2).replace("{", "");
+        String[] arr = s.split("},");
+        Arrays.sort(arr, (o1, o2) -> Integer.compare(o1.length(), o2.length()));
+
+        HashSet<String> set = new HashSet<>();
+        int[] answer = new int[arr.length];
+
+        // ❷ 각 원소를 순회하면서 이전 원소와 차이 나는 부분을 구합니다.
+        for (int i = 0; i < arr.length; i++) {
+            String[] numbers = arr[i].split(",");
+            for (String number : numbers) {
+                if (!set.contains(number)) {
+                    answer[i] = Integer.parseInt(number);
+                    set.add(number);
+                }
+            }
         }
 
-        // ❷ 조합하여 비교하여 더 큰 수를 기준으로 내림차순 정렬합니다.
-        list.sort((o1, o2) -> {
-            int a = Integer.parseInt(o1 + o2);
-            int b = Integer.parseInt(o2 + o1);
-            return Integer.compare(b, a);
-        });
-
-        // ❸ 정렬된 수를 나열하여 문자열로 만듭니다.
-        StringBuilder sb = new StringBuilder();
-        for (String s : list) {
-            sb.append(s);
-        }
-
-        // ❹ 문자열을 반환합니다. 맨앞에 "0" 이 있는 경우는 "0"만 반환합니다.
-        return sb.charAt(0) == '0' ? "0" : sb.toString();
+        return answer;
     }
 
 }

@@ -1,33 +1,44 @@
 public class Solution {
 
-    private static int answer;
-    private static int[][] Dungeons;
-    private static boolean[] visited;
+    private static int N;
+    private static boolean[] width;
+    private static boolean[] diagonal1;
+    private static boolean[] diagonal2;
 
-    // 백트래킹을 위한 DFS
-    private static void backtrack(int k, int cnt) {
-        for (int i = 0; i < Dungeons.length; i++) {
-            // ❶ 현재 피로도(k)가 i번째 던전의 최소 필요 피로도보다 크거나 같고,
-            // i번째 던전을 방문한 적이 없다면
-            if (!visited[i] && k >= Dungeons[i][0]) {
-                visited[i] = true; // i번째 던전을 방문 처리
-                // ❷ 현재까지의 최대 탐험 가능 던전 수와
-                // i번째 던전에서 이동할 수 있는 최대 탐험 가능 던전 수 중 큰 값을 선택하여 업데이트
-                backtrack(k - Dungeons[i][1], cnt + 1);
-                answer = Math.max(answer, cnt + 1);
-                visited[i] = false; // i번째 던전을 다시 방문 취소
+    // ❶ 퀸이 서로 공격할 수 없는 위치에 놓이는 경우의 수를 구하는 함수
+    private static int getAns(int y) {
+        int ans = 0;
+        // ❷ 모든 행에 대해서 퀸의 위치가 결장되었을 경우
+        if (y == N) {
+            // ❸ 해결 가능한 경우의 수를 1 증가시킴
+            ans++;
+        }
+        else {
+            // ❹ 현재 행에서 퀸이 놓일 수 있는 모든 위치를 시도
+            for (int i = 0; i < N; i++) {
+                // ❺ 해당 위치에 이미 퀸이 있는 경우, 대각선상에 퀸이 있는 경우 스킵
+                if (width[i] || diagonal1[i + y] || diagonal2[i - y + N])
+                    continue;
+
+                // ❻ 해당 위치에 퀸을 놓음
+                width[i] = diagonal1[i + y] = diagonal2[i - y + N] = true;
+                // ❼ 다음 행으로 이동하여 재귀적으로 해결 가능한 경우의 수 찾기
+                ans += getAns(y + 1);
+                // ❽ 해당 위치에 놓인 퀸을 제거함
+                width[i] = diagonal1[i + y] = diagonal2[i - y + N] = false;
             }
         }
+
+        return ans;
     }
 
-    public int solution(int k, int[][] dungeons) {
-        answer = 0;
-        Dungeons = dungeons;
-        // ❸ 던전 방문 여부를 저장할 배열
-        visited = new boolean[dungeons.length];
+    public int solution(int n) {
+        N = n;
+        width = new boolean[n];
+        diagonal1 = new boolean[n * 2];
+        diagonal2 = new boolean[n * 2];
 
-        backtrack(k, 0); // ❹ DFS 메소드 수행
-
+        int answer = getAns(0);
         return answer;
     }
 

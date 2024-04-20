@@ -1,25 +1,55 @@
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.PriorityQueue;
 
 public class Solution {
 
-    public int[] solution(String s) {
-        // ❶ 문자열 s에서 대괄호를 제거하고 ","을 기준으로 나누어 배열에 저장한 후 길이 기준으로 오름차순 정렬합니다.
-        s = s.substring(0, s.length() - 2).replace("{", "");
-        String[] arr = s.split("},");
-        Arrays.sort(arr, (o1, o2) -> Integer.compare(o1.length(), o2.length()));
+    private static class Node {
+        int i, j, cost;
 
-        HashSet<String> set = new HashSet<>();
-        int[] answer = new int[arr.length];
+        public Node(int i, int j, int cost) {
+            this.i = i;
+            this.j = j;
+            this.cost = cost;
+        }
+    }
 
-        // ❷ 각 원소를 순회하면서 이전 원소와 차이 나는 부분을 구합니다.
-        for (int i = 0; i < arr.length; i++) {
-            String[] numbers = arr[i].split(",");
-            for (String number : numbers) {
-                if (!set.contains(number)) {
-                    answer[i] = Integer.parseInt(number);
-                    set.add(number);
-                }
+    public int solution(int[][] land, int height) {
+        int answer = 0;
+        int n = land.length;
+
+        // ❶ 주변 노드 탐색을 위한 di, dj
+        int[] di = {-1, 0, 1, 0};
+        int[] dj = {0, 1, 0, -1};
+
+        boolean[][] visited = new boolean[n][n];
+
+        // ❷ 시작 노드 추가
+        PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
+        pq.add(new Node(0, 0, 0));
+
+        // ❸ BFS + 우선순위 큐로 다음 노드 관리
+        while (!pq.isEmpty()) {
+            Node now = pq.poll();
+            // ❹ 아직 방문하지 않은 경로만 탐색
+            if (visited[now.i][now.j])
+                continue;
+
+            visited[now.i][now.j] = true;
+            // ❺ 현재까지 비용을 합산
+            answer += now.cost;
+
+            for (int i = 0; i < 4; i++) {
+                int ni = now.i + di[i];
+                int nj = now.j + dj[i];
+
+                // ❻ 유효한 인덱스가 아닐 경우
+                if (!(0 <= ni && ni < n && 0 <= nj && nj < n))
+                    continue;
+
+                int tempCost = Math.abs(land[now.i][now.j] - land[ni][nj]);
+                // ❼ 입력으로 주어진 height 보다 높이차가 큰 경우
+                int newCost = tempCost > height ? tempCost : 0;
+                // ❽ 다음 경로를 add
+                pq.add(new Node(ni, nj, newCost));
             }
         }
 

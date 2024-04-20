@@ -1,24 +1,29 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Solution {
 
-    public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
-
-        for (int c = 0; c < commands.length; c++) {
-            int i = commands[c][0];
-            int j = commands[c][1];
-            int k = commands[c][2];
-
-            // ❶ i번째 부터 j번째 까지 자르기
-            int[] slicedArr = Arrays.copyOfRange(array, i - 1, j);
-            // ❷ 자른 배열을 정렬하기
-            Arrays.sort(slicedArr);
-            // ❸ k번째 원소 구하기
-            answer[c] = slicedArr[k - 1];
+    public String solution(int[] numbers) {
+        // ❶ int형 정수 배열을 문자열로 바꾸어 list에 저장합니다.
+        ArrayList<String> list = new ArrayList<>();
+        for (int number : numbers) {
+            list.add(String.valueOf(number));
         }
 
-        return answer;
+        // ❷ 조합하여 비교하여 더 큰 수를 기준으로 내림차순 정렬합니다.
+        list.sort((o1, o2) -> {
+            int a = Integer.parseInt(o1 + o2);
+            int b = Integer.parseInt(o2 + o1);
+            return Integer.compare(b, a);
+        });
+
+        // ❸ 정렬된 수를 나열하여 문자열로 만듭니다.
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) {
+            sb.append(s);
+        }
+
+        // ❹ 문자열을 반환합니다. 맨앞에 "0" 이 있는 경우는 "0"만 반환합니다.
+        return sb.charAt(0) == '0' ? "0" : sb.toString();
     }
 
 }

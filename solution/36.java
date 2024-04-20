@@ -1,64 +1,70 @@
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Solution {
 
     public static void main(String[] args) {
-        int[][] graph1 = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}, {3, 7}, {4, 8}, {5, 8}, {6, 9}, {7, 9}};
-        System.out.println(Arrays.toString(solution(graph1, 1, 9)));
-        int[][] graph2 = {{1, 3}, {3, 4}, {3, 5}, {5, 2}};
-        System.out.println(Arrays.toString(solution(graph2, 1, 5)));
+        int[][] graph = {{0, 1, 9}, {0, 2, 3}, {1, 0, 5}, {2, 1, 1}};
+        System.out.println(Arrays.toString(solution(graph, 0, 3)));
+        int[][] graph2 = {{0, 1, 1}, {1, 2, 5}, {2, 3, 1}};
+        System.out.println(Arrays.toString(solution(graph2, 0, 4)));
     }
 
-    // 인접 리스트 저장할 ArrayList 배열
-    private static ArrayList<Integer>[] adjList;
+    // 노드의 정보(노드 번호와 거리)를 쌍으로 저장할 클래스 생성
+    private static class Node {
+        int dest, cost;
 
-    // 방문 여부를 저장할 boolean 배열
-    private static boolean[] visited;
-
-    private static ArrayList<Integer> answer;
+        public Node(int dest, int cost) {
+            this.dest = dest;
+            this.cost = cost;
+        }
+    }
 
     // 이 부분을 변경해서 실행해보세요.
-    private static int[] solution(int[][] graph, int start, int n) {
-        adjList = new ArrayList[n + 1];
-        for (int i = 0; i < adjList.length; i++) {
+    public static int[] solution(int[][] graph, int start, int n) {
+        // ❶ 인접 리스트를 저장할 ArrayList 배열 초기화
+        ArrayList<Node>[] adjList = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
             adjList[i] = new ArrayList<>();
         }
 
+        // ❷ graph 정보를 인접 리스트로 저장
         for (int[] edge : graph) {
-            adjList[edge[0]].add(edge[1]);
+            adjList[edge[0]].add(new Node(edge[1], edge[2]));
         }
 
-        // ❶ 방문 여부를 저장할 배열
-        visited = new boolean[n + 1];
-        answer = new ArrayList<>();
-        bfs(start); // ❽ 시작 노드에서 너비 우선 탐색 시작
+        int[] dist = new int[n];
+        // ❸ 모든 노드의 거리 값을 무한대로 초기화
+        Arrays.fill(dist, Integer.MAX_VALUE);
 
-        return answer.stream().mapToInt(Integer::intValue).toArray();
-    }
+        // ❹ 시작 노드의 거리 값은 0으로 초기화
+        dist[start] = 0;
 
-    // BFS 탐색 메소드
-    private static void bfs(int start) {
-        // ❷ 탐색시 맨 처음 방문할 노드를 add 하고 방문처리
-        ArrayDeque<Integer> queue = new ArrayDeque<>();
-        queue.add(start);
-        visited[start] = true;
+        // ❺ 우선순위 큐를 생성하고 시작 노드를 삽입
+        PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
+        pq.add(new Node(start, 0));
 
-        // ❸ 큐가 비어 있지 않은 동안 반복
-        while (!queue.isEmpty()) {
-            // ❹ 큐에 있는 원소 중 가장 먼저 추가된 원소를 poll하고 정답 리스트에 추가
-            int now = queue.poll();
-            answer.add(now);
-            // ❺ 인접한 이웃 노드들에 대해서
-            for (int next : adjList[now]) {
-                if (!visited[next]) { // ❻ 방문하지 않은 인접한 노드인 경우
-                    // ❼ 인접한 노드를 방문 처리함
-                    queue.add(next);
-                    visited[next] = true;
+        while (!pq.isEmpty()) {
+            // ❻ 현재 가장 거리가 짧은 노드를 가져옴
+            Node now = pq.poll();
+
+            // ❼ 만약 현재 노드의 거리 값이 큐에서 가져온 거리 값보다 크면, 해당 노드는 이미 방문한 것이므로 무시
+            if (dist[now.dest] < now.cost)
+                continue;
+
+            // ❽ 현재 노드와 인접한 노드들의 거리 값을 계산하여 업데이트
+            for (Node next : adjList[now.dest]) {
+                // ❾ 기존에 발견했던 거리보다 더 짧은 거리를 발견하면 거리 값을 갱신하고 큐에 넣음
+                if (dist[next.dest] > now.cost + next.cost) {
+                    dist[next.dest] = now.cost + next.cost;
+                    pq.add(new Node(next.dest, dist[next.dest]));
                 }
             }
         }
+
+        // ➓ 최단 거리를 담고 있는 배열을 반환
+        return dist;
     }
 
 }

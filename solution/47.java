@@ -1,45 +1,63 @@
+import java.util.Arrays;
+
 public class Solution {
 
-    private static int N;
-    private static boolean[] width;
-    private static boolean[] diagonal1;
-    private static boolean[] diagonal2;
+    private static int max;
+    private static int[] answer;
+    private static int[] apeach;
 
-    // ❶ 퀸이 서로 공격할 수 없는 위치에 놓이는 경우의 수를 구하는 함수
-    private static int getAns(int y) {
-        int ans = 0;
-        // ❷ 모든 행에 대해서 퀸의 위치가 결장되었을 경우
-        if (y == N) {
-            // ❸ 해결 가능한 경우의 수를 1 증가시킴
-            ans++;
-        }
-        else {
-            // ❹ 현재 행에서 퀸이 놓일 수 있는 모든 위치를 시도
-            for (int i = 0; i < N; i++) {
-                // ❺ 해당 위치에 이미 퀸이 있는 경우, 대각선상에 퀸이 있는 경우 스킵
-                if (width[i] || diagonal1[i + y] || diagonal2[i - y + N])
-                    continue;
-
-                // ❻ 해당 위치에 퀸을 놓음
-                width[i] = diagonal1[i + y] = diagonal2[i - y + N] = true;
-                // ❼ 다음 행으로 이동하여 재귀적으로 해결 가능한 경우의 수 찾기
-                ans += getAns(y + 1);
-                // ❽ 해당 위치에 놓인 퀸을 제거함
-                width[i] = diagonal1[i + y] = diagonal2[i - y + N] = false;
+    // ❶ 주어진 조합에서 각각의 점수 계산
+    private static int getScore(int[] ryan) {
+        int score = 0;
+        for (int i = 0; i <= 10; i++) {
+            if (ryan[i] + apeach[i] > 0) {
+                score += ryan[i] > apeach[i] ? (10 - i) : -(10 - i);
             }
         }
-
-        return ans;
+        return score;
     }
 
-    public int solution(int n) {
-        N = n;
-        width = new boolean[n];
-        diagonal1 = new boolean[n * 2];
-        diagonal2 = new boolean[n * 2];
+    // ❷ 최대 차이와 라이언의 과녁 저장
+    private static void calculateDiff(int[] ryan) {
+        int score = getScore(ryan);
+        if (max < score) {
+            max = score;
+            answer = ryan.clone();
+        }
+        // 점수가 같으면 가장 낮은 점수를 더 많이 맞힌 경우를 찾음
+        else if (max > 0 && max == score) {
+            for (int i = 10; i >= 0; i--) {
+                if(answer[i] != ryan[i]) {
+                    if (answer[i] < ryan[i]) {
+                        answer = ryan.clone();
+                    }
+                    break;
+                }
+            }
+        }
+    }
 
-        int answer = getAns(0);
-        return answer;
+    // ❸ 가능한 라이언의 과녁 점수 조합의 모든 경우를 구함
+    private static void backtrack(int n, int idx, int[] ryan) {
+        if (n == 0) {
+            calculateDiff(ryan);
+            return;
+        }
+
+        for (int i = idx; i <= 10; i++) {
+            int cnt = Math.min(n, apeach[i] + 1);
+            ryan[i] = cnt;
+            backtrack(n - cnt, i + 1, ryan);
+            ryan[i] = 0;
+        }
+    }
+
+    public static int[] solution(int n, int[] info) {
+        apeach = info;
+        max = 0;
+        backtrack(n, 0, new int[11]);
+        // ❹ 최대 차이가 0인 경우 -1 반환, 아니면 answer 반환
+        return max == 0 ? new int[]{-1} : answer;
     }
 
 }
