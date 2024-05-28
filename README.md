@@ -7,7 +7,7 @@
 - Yes24 : https://www.yes24.com/Product/Goods/125183948
 - 교보문고 : https://product.kyobobook.co.kr/detail/S000212576322
 - 알라딘 : https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=335109613
-- 리디북스(Ebook) : 
+- 리디북스(Ebook) : https://ridibooks.com/books/4547000036
 
 # 정오표
 [클릭](https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0)
