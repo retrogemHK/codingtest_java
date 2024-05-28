@@ -1,10 +1,15 @@
-# 코딩 테스트 합격자 되기(자바 편)- 3월 초 출간 예정
-| 서점           | 구매링크                                                                                           |
-|--------------|------------------------------------------------------------------------------------------------|
-| 무료 미리보기      | (TBD)                                                                                          |
-| 교보문고         | https://product.kyobobook.co.kr/detail/S000212576322                                           |
-| 알라딘          | https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=335109613                                   |
-| 예스24         | https://www.yes24.com/Product/Goods/125183948                                                  |
+# 코딩 테스트 합격자 되기(자바 편)
+
+# 코딩 테스트 합격자 되기(자바스크립트 편)
+- 프로그래머스에서 엄선한 기출 문제에 대한 상세한 풀이 제공
+- 들고 다닐 수 있는 요약 노트 제공
+- 실전 문제 위주로 출제된 기출 문제 5회분 제공(회당 3 문제)
+
+## 📖 도서 구매 링크
+- Yes24 : https://www.yes24.com/Product/Goods/125183948
+- 교보문고 : https://product.kyobobook.co.kr/detail/S000212576322
+- 알라딘 : https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=335109613
+- 리디북스(Ebook) : 
 
 # 정오표
 [클릭](https://docs.google.com/spreadsheets/d/16ZWyC2xlylfsGBdyt2YMT8ogpukNh7sXsHrfx5qQuFk/edit#gid=0)
