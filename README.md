@@ -3,6 +3,9 @@
 - 들고 다닐 수 있는 요약 노트 제공
 - 실전 문제 위주로 출제된 기출 문제 5회분 제공(회당 3 문제)
 
+- <img width="464" alt="image" src="https://github.com/retrogemHK/codingtest_java/assets/14954690/16687a4f-c529-407c-a44b-15a9677f0eac">
+
+
 ## 📖 도서 구매 링크
 - Yes24 : https://www.yes24.com/Product/Goods/125183948
 - 교보문고 : https://product.kyobobook.co.kr/detail/S000212576322
