@@ -7,7 +7,7 @@ public class Solution {
         visit[now] = true; // ❶ 현재 노드 방문 처리
         for (int i = 0; i < computer[now].length; i++) {
             // ❷ 연결되어 있으며 방문하지 않은 노드라면
-            if (computer[now][i] == 1 && !visit[now]) {
+            if (computer[now][i] == 1 && !visit[i]) {
                 dfs(i); // ❸ 해당 노드를 방문하러 이동
             }
         }
